@@ -10,9 +10,9 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <a href="{{route('admin.tag.create')}}"  class="btn btn-primary waves-effect">
+            <a href="{{route('admin.category.create')}}"  class="btn btn-primary waves-effect">
                 <i class="material-icons">add</i>
-                <span>Add New Tag</span>
+                <span>Add New Category</span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            All Tags
+                            All Categories
                         </h2>
                     </div>
                     <div class="body">
@@ -43,26 +43,30 @@
                                         <tr>
                                             <th rowspan="1" colspan="1" width="40px" class="text-center">SL No</th>
                                             <th rowspan="1" colspan="1">Name</th>
+                                            <th rowspan="1" colspan="1" class="text-center">Image</th>
                                             <th rowspan="1" colspan="1">Created_At</th>
                                             <th rowspan="1" colspan="1">Updated_At</th>
-                                            <th rowspan="1" colspan="1">Action</th>
+                                            <th rowspan="1" colspan="1"class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($tags as $key=>$tag)
+                                        @foreach($categories as $key=>$category)
                                             <tr role="row" class="odd">
                                                 <td class="text-center">{{ $key + 1 }}</td>
-                                                <td>{{ $tag->name }}</td>
-                                                <td>{{ $tag->created_at }}</td>
-                                                <td>{{ $tag->updated_at }}</td>
+                                                <td>{{ $category->name }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('admin.tag.edit', $tag->id) }}" class="btn btn-primary waves-effect">
+                                                    <img src="{{asset('storage/category')}}/{{$category->image}}" alt="{{ $category->image }}" width="90" height="30" alt="">
+                                                </td>
+                                                <td>{{ $category->created_at }}</td>
+                                                <td>{{ $category->updated_at }}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary waves-effect">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <button class="btn btn-danger waves-effect" onclick="deleteForm({{ $tag->id }})">
+                                                    <button class="btn btn-danger waves-effect" onclick="deleteForm({{ $category->id }})">
                                                         <i class="material-icons"> delete </i>
                                                     </button>
-                                                    <form id="delete-form-{{ $tag->id }}" action="{{ route('admin.tag.destroy', $tag->id) }}" method="post" class="d-none">
+                                                    <form id="delete-form-{{ $category->id }}" action="{{ route('admin.category.destroy', $category->id) }}" method="post" class="d-none">
                                                         @csrf
                                                         @method('delete')
                                                     </form>
